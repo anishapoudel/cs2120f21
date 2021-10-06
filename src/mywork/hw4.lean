@@ -256,3 +256,13 @@ begin
 
 end
 
+
+example : ∀ (P Q : Prop) (p2q : P → Q) (p : P), Q :=
+begin
+  assume h,
+  assume P,
+  assume pandh,
+  exact pandh,
+end
+
+
