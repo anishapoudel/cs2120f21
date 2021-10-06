@@ -52,6 +52,7 @@ def z : ℤ := 1    -- 1 as an integer (negative or non-negative whole number)
 def r : ℝ := 1.0  -- 1 as a real number (infinite decimal sequence)
 def q : ℚ := 1/1  -- 1 as a rational number (fraction)
  
+
 /-
 Each proceeding line of code has the following elements
 - def: a keyword, binds the given identifer to the given value
@@ -91,7 +92,8 @@ it to say that the standard Lean Prover
 libraries define equality pretty much as 
 we've discussed here: with an axiom in 
 the form of a universal generaliztion: 
-∀ {T : Type} (t : T), t = t.
+∀ {T : Type} (t : T), t = t.  eq.refl
+
 
 In English, this says, "if you give me 
 *any* Type, T, and any object, t, of that
@@ -114,6 +116,9 @@ the proposition, 1 = 1.
 Indeed, that's just how it works, as the
 follow example shows formally (in Lean).
 -/
+
+def cat := eq.refl 2
+#check cat
 
 example : 1 = 1 := 
   eq.refl 1   -- Lean inferns T = ℕ from 1
@@ -221,6 +226,15 @@ def gimme_a_proof   -- function name
     : t = t         -- return "type" 
     := eq.refl t    -- implementation
 
+
+
+def rat := gimme_a_proof ℕ 3
+
+#check rat
+
+
+
+
 /-
 Let's decode that. We're defining a function
 called gimme_a_proof that takes T and t as 
@@ -262,8 +276,12 @@ EXERCISES #1.
 Give a quasi-formal English language "proof" 
 of the proposition that 2 = 2.
 
+
+
 Theorem: 2 = 2.
-Proof: [your answer here]
+Proof: 
+By the reflexive property of equality
+(applied to the particular value, 2). QED." 
 
 -/
 
@@ -290,7 +308,7 @@ A. Every time the bell has rung, I've gotten a
 nugget. The bell just rung, so I'm gonna get a
 nugget! (Dogs usually say "gonna," by the way).
 
-answer: 
+answer: inductive 
 
 B. The "clone repo into container" command did
 nothing. That was clearly wrong. I search around
@@ -300,12 +318,12 @@ have git installed. Ah ha, I thought. That could
 be it. I'll do the obvious experiment and install
 git and see if it works. (It did, by the way.)
 
-answer: 
+answer: abductive 
 
 C. It's true that it's raining, and it's true
 that the streets are wet, so it must be true 
 that "it's raining *and* the streets are wet."
 
-answer: 
+answer: deductive 
 -/
 end cs2120

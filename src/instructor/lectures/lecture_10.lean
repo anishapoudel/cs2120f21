@@ -111,7 +111,7 @@ is trivial, so the conclusion *follows*.
 example : false → false :=
 begin
   assume f,
-  cases f,    -- case analysis: there are no cases!
+  exact f,    -- case analysis: there are no cases!
 end
 
 /-

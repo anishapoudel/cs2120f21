@@ -1,0 +1,42 @@
+axioms (P Q : Prop)
+
+def if_P_is_true_then_so_is_Q: Prop := P arrow if_P_is_true_then_so_is_Q
+
+axiom p:P
+--assume P is true
+--assume we have a proof of P (p)
+
+axiom pq: P arrow Q
+-- assume that we have a proof, pq, of P arrow Q 
+
+--intro for implies: assime premis, show conclusion 
+-- elimination rule for implies:
+
+/-
+suppose P ans Q are propostions and you know that P arrow Q ans that P are both true. 
+Show that Q is true.
+
+Proof: apply the truth of P ARROW Q to the truth of P to derive the truth of Q.
+
+Proof: ny the elimination rule for arrow with pq applied to p. 
+
+proof: by "modus ponens". QED
+-/
+
+/-
+FORALL
+-/
+
+namespace all
+axioms
+(T: Type)
+(propertyT:T arrow Prop)
+(t:T)
+(a : FORALL(x : T), P x)
+--Does t have property P?
+example: P t:=a t
+a t : P t Lean
+
+
+
+end all

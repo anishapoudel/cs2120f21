@@ -51,8 +51,8 @@ then shows for sure that that is so.
 
 example : ∃ (b : bool), b && tt = ff :=
 begin
-  intros,
-
+  apply exists.intro ff,
+  exact rfl,
 end
 
 example : (exists (b : bool), b && tt = ff) → (∃ (b : bool), true) :=
@@ -89,6 +89,13 @@ example :
   (∃ (b : Ball), Red b ∧ Green b) → 
   (∃ (b : Ball), Red b) :=
 begin
+  assume h,
+  cases h with w pf,
+  apply exists.intro w,
+  exact pf.left,
+
+
+
 
 end 
 
@@ -96,12 +103,25 @@ example :
   (∃ (b : Ball), Red b ∨ Green b) → 
   (∃ (b : Ball), Green b ∨ Red b) :=
 begin
+  assume h,
+  cases h with w pf,
+  apply exists.intro w,
+  cases pf,
+
+
 end 
 
 example : 
   (∃ (b : Ball), Red b ∨ Green b) → 
   (∃ (b : Ball), Red b) :=
 begin
+  assume h ,
+  cases h with w pf,
+  cases pf,
+  apply exists.intro w,
+  assumption, 
+  apply exists.intro w,
+
 end 
 
 example : 
@@ -121,8 +141,14 @@ axioms
 
 example : 
   (∃ (p1 : Person), ∀ (p2 : Person), Likes p2 p1) → 
-  (∀ (p1 : Person), ∃ (p2 : Person), Likes p1 p2) :=
+  (∀ (e : Person), ∃ (s : Person), Likes e s) :=
 begin
+  assume h,
+  assume e,
+  cases h with p pf, 
+  apply exists.intro p,
+  exact (pf e),
+
 end
 
 /-

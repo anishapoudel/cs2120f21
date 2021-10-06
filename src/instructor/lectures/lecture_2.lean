@@ -34,6 +34,7 @@ axiom eq_subst :
     (px : P x),     -- and you have a proof that x has property P
   P y               -- then you can deduce (and get a proof) of P y
 
+
 /-
 The Lean versions of these axioms are called eq.refl and eq.subst.
 They're defined in ways that allow (and require) one not to give the

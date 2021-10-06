@@ -150,7 +150,7 @@ rule for and.
 
 example : 0 = 0 ∧ 1 = 1 :=
 begin
-  apply and.intro _ _,
+  apply and.intro,
   apply eq.refl 0,
   apply eq.refl 1,
 end 

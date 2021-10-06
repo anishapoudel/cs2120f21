@@ -151,6 +151,7 @@ end
 example : ¬ (0 = 1) := 
 begin
   assume h,
+  contradiction,
   -- what do we do now?
 end
 

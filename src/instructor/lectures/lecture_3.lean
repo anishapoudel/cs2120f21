@@ -81,6 +81,12 @@ example : ℕ := 5
 -- give a proof of the proposition 1 = 1 
 example : 1 = 1 := eq.refl 1
 
+def p : Prop := (1=1)
+
+def v: p := (eq.refl 1)
+#check v
+
+
 /-
 We will now present formal proofs of our two 
 theorems in this style.
