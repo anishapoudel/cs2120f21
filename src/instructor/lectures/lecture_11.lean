@@ -45,7 +45,7 @@ it possible to derive ¬¬P → P as a theorem. (The
 truth is that you can assume either and derive the
 other, so the turn out to be equivalent.)
 -/
-
+#check ¬ 
 
 /-
 The first two examples/problems from the homework

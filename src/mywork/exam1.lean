@@ -42,6 +42,7 @@ rule for →.
 (P Q : Prop) (p2q : P → Q) (p : P)
 ----------------------------------
      Given propositions of P ∧ Q is true or that P ∨ Q is true, 
+
 a derivation of the proof P is true and Q is true can be 
 made or that either propostion of P or the proposition of Q is true. 
 -/
@@ -75,9 +76,15 @@ inference rule notation.
 (pf: true)
 
 Give a brief English language explanation of
-the introduction rule for true.
 
--- answer here
+ true.intro is a proof of true. It's
+always defined, and so we can use it at anytime
+to prove the propositions, true. That in fact 
+is the introduction rule for true: that true 
+has a proof (and is thus invariably logically true). 
+In the end, a proof of true is worthless because
+it carries no information at all.
+
 
 ELIMINATION
 
@@ -92,7 +99,11 @@ there's no use for an elimination rule.
 
 -- Give a formal proof of the following:
 
-example : true := _
+example : true :=
+begin
+  exact(true.intro),
+end
+
 
 
 -- -------------------------------------
@@ -114,12 +125,20 @@ Given an English language description of
 this inference rule. What does it really
 say, in plain simple English. 
 
--- answer here
+-- 
+AANSWER:
+Given p a proposition of type P which is assumed true 
+and q a propostion if type Q which is assumed true, we can 
+deduce P and Q is true. 
 
 ELIMINATION
 
 Given the elimination rules for ∧ in both
 inference rule and English language forms.
+
+Given that P and Q is assumed is true, the propostion P
+can be assumed true as well as the proposition Q
+
 -/
 
 /-
@@ -127,7 +146,12 @@ Formally state and prove the theorem that,
 for any propositions P and Q,  Q ∧ P → P. 
 -/
 
-example : _ := _
+example : ∀ (P Q: Prop), Q ∧ P → P :=
+begin
+  assume P,
+  assume Q,
+  apply and.elim_right,
+end
 
 
 -- -------------------------------------
@@ -142,7 +166,13 @@ T is any type (such as nat) and Q is any proposition
 given type), how do you prove ∀ (t : T), Q? What is
 the introduction rule for ∀?
 
--- answer here
+-- 
+ANSWER:
+It's called exists.intro in Lean. You
+apply it to two arguments: a specific value, w,
+in place of x, and a proof that that particular
+w satisfies the predicate, P, i.e., that there 
+is a proof of the proposition, P w. 
 
 ELIMINATION
 
@@ -153,7 +183,7 @@ what it says.
 
 (T : Type) (Q : Prop), (pf : ∀ (t : T), Q) (t : T)
 -------------------------------------------------- elim
-                [Replace with answer]
+                [(t : T) ,(Q)]
 
 -- English language answer here
 
@@ -161,7 +191,8 @@ Given a proof, (pf : ∀ (t : T), Q), and a value, (t : T),
 briefly explain in English how you *use* pf to derive a
 proof of Q.
 
--- answer here
+-- For all t of type T, Q is assumed to be true. If there is t of type T, 
+then Q is true. 
 -/
 
 /-
@@ -174,18 +205,25 @@ axioms
   (Person : Type)
   (KnowsLogic BetterComputerScientist : Person → Prop)
   (LogicMakesYouBetterAtCS: 
-    ∀ (p : Person), KnowsLogic p → BetterComputerScientist p)
+
+
+
+
   -- formalizee the following assumptions here
   -- (1) Lynn is a person
   -- (2) Lynn knows logic
-  -- add answer here
+  -- add answe
   -- add answer here
 
 /-
 Now, formally state and prove the proposition that
 Lynn is a better computer scientist
+
+example : ∀ (P Q : Prop) (p2q : P → Q) (p : P), Q :=
 -/
-example : _ := _
+example :(Lynn: Person), KnowsLogic Lynn → BetterComputerScientist= 
+begin
+end
 
 
 
@@ -198,19 +236,38 @@ the short formal definition of ¬ in Lean. Note that
 surround the place where you give your answer with
 a namespace. This is just to avoid conflicting with
 Lean's definition of not.
+
+Logical not.
+
+not P, with notation ¬ P, is the Prop which is true if and only if P is 
+false. It is internally represented as P → false, so one way to prove a 
+goal ⊢ ¬ P is to use intro h, which gives you a new hypothesis h : P and 
+the goal ⊢ false.
 -/
 
 namespace hidden
-def not (P : Prop) := _ -- fill in the placeholder
+def not (P : Prop) := ¬P -- fill in the placeholder
 end hidden
 
 /-
 Explain precisely in English the "proof strategy"
 of "proof by negation." Explain how one uses this
 strategy to prove a proposition, ¬P. 
+
+A proof of P → false you can derive
+a proof of ¬P. To prove ¬P you first assume P,
+is true, then you show that in this context
+you can derive a contradiction. What you
+have then shown, of course, is P → false.
+
+So, to prove ¬P, assume P and show that in
+this context there is a contradiction. 
 -/
 
--- answer here
+/- Given an proposition, ¬P, we can form a new
+proposition, usually written as P, which we
+pronounce as "P" and which we define in 
+such as way as to assert that ¬ P is not true. -/
 
 /-
 Explain precisely in English the "proof strategy"
@@ -218,17 +275,23 @@ of "proof by contradiction." Explain how one uses
 this strategy to prove a proposition, P (notice 
 the lack of a ¬ in front of the P). 
 
+Proof by contradiction is just applying the axiom of negation
+elimination. You want to prove P, so you assume ¬P, then show that
+this leads to a contradiction, proving ¬¬P,
+at which point you "go classical" and apply
+the theorem/axiom of negation elimination to
+conclude P.
+
 Fill in the blanks the following partial answer:
 
-To prove P, assume ____ and show that __________.
-From this derivation you can conclude __________.
-Then you apply the rule of negation ____________
-to that result to arrive a a proof of P. We have
+To prove P, assume __-P__ and show that _¬¬P __. From this derivation you 
+can conclude ___contradiction______. Then you apply the rule of negation 
+____elimination______ to that result to arrive a a proof of P. We have
 seen that the inference rule you apply in the 
 last step is not constructively valid but that it
-is __________ valid, and that accepting the axiom
-of the __________ suffices to establish negation
-__________ (better called double _____ _________)
+is _____independently_____ valid, and that accepting the axiom
+of the _____excluded middle_____ suffices to establish negation
+__________ (better called double ___NEGATION__ __elimination_______)
 as a theorem.
 -/
 
@@ -258,9 +321,27 @@ that iff has both elim_left and elim_right
 rules, just like ∧.
 -/
 
-example : _ :=
+example  : ∀ (P Q : Prop), P ∧ Q ↔ Q ∧ P  :=
 begin
-_
+  assume P,
+  assume Q,
+  apply iff.intro,
+  assume pandq,
+  apply and.elim pandq,
+  assume p,
+  assume q,
+  apply and.intro,
+  exact q,
+  exact p,
+  assume qandp,
+  apply and.elim qandp,
+  assume q,
+  assume p,
+  apply and.intro,
+  exact p,
+  exact q,
+end
+
 end
 
 
@@ -298,8 +379,15 @@ def ELJL : Prop :=
 
 example : ELJL :=
 begin
-  assume e,
-
+  assume h,
+  assume i,
+  assume o,
+  assume P,
+  assume y,
+  assume q,
+  assume v,
+  assume m,
+  admit,
 
 end
 
@@ -309,15 +397,18 @@ end
 
 If every car is either heavy or light, and red or 
 blue, and we want a prove by cases that every car 
-is red, then: 
+is rad, then: 
 
--- how many cases will need to be considered? 4__
+-- how many cases will need to be considered? __8__
 -- list the cases (informaly)
-    -- heavy
-    --light
-    --red
-    --blue 
-
+    -- heavy and blue, not rad
+    --heavy and red,  not rad
+    -- light and blue, not rad
+    -- light and red, not rad
+`   -- heavy and blue, rad
+    --heavy and red, rad
+    -- light and blue, rad
+    -- light and red, rad
 -/
 
 /-
@@ -380,11 +471,11 @@ def negelim_equiv_exmid : Prop :=
 example : ∀ (P : Prop), (P ∨ ¬¬P) :=
 begin
   assume P ,
-  apply or.intro_left,
-  
-  
-
+  apply or.intro_right,
+  assume p,
+  admit,
 end 
+
 /- 
 EXTRA CREDIT: Formally express and prove the
 proposition that if there is someone everyone
@@ -394,4 +485,13 @@ thre is someone who loves everyone. [5 points]
 
 axiom Loves : Person → Person → Prop
 
-example : _ := _
+example : 
+  (∃ (p1 : Person), ∀ (p2 : Person), Loves p2 p1) → 
+  (∀ (e : Person), ∃ (s : Person), Loves e s) :=
+begin
+  assume h,
+  cases h with p pf,
+  assume e,
+  apply exists.intro p,
+  exact (pf e),
+end
