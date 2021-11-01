@@ -7,7 +7,11 @@ Exercise: Prove that for any set, L, L ∩ L = L.
 the intersection of set L with itself is L since every
 element of L is in itself. 
 -/
+theorem eq_is_refl : reflexive (@eq nat) :=  
 
+begin
+
+end
 
 /-
 Exercise: Give a formal statement and proof, then an 
@@ -19,8 +23,10 @@ sets is commutative.
 change the outcome making it communitive. 
 -/
 
+example: Π {α : Type}  ⦃x y⦄, (x ∪ y = y ∪ x)
+begin 
+end
 
-example: 𝑥	∈		(𝑆∪𝑇)		
 
 
 
@@ -49,6 +55,12 @@ the order of the two sets in the expression because the outcome
 will be a new set with the elements that are in both the sets.
 
 -/
+(α β : Type)
+  (x : α → Prop)
+  (y : β → Prop)
+example: Π {α : Type}  ⦃x y⦄, (x ∪ y = y ∪ x) v (x ∩ y = y ∩ x):=
+begin
+end 
 
 
 /-

@@ -53,7 +53,14 @@ function that maps/takes every α value that ...
 
 -- Give your formal proof here
 begin
-  _
+  assume j,
+  assume o,
+  cases j with h r,
+  cases o with t n,
+  apply exists.intro,
+  have beta: β:= h t,
+  
+ 
 end
   
 

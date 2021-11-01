@@ -256,6 +256,7 @@ SYMMETRY AS A PROPERTY OF RELATIONS
 -/
 
 def symmetric := ∀ ⦃x y⦄, x ≺ y → y ≺ x
+def communitive
 
 /-
 Exercise: prove that = is symmetric. And
@@ -265,6 +266,8 @@ give a brief defense of your answer.
 
 theorem eq_is_symm : symmetric (@eq α) :=
 begin
+  def symmetric, 
+
 end
 
 /-
