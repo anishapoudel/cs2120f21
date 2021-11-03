@@ -24,7 +24,9 @@ formally, stating that for any value,
 n, cong_mod n is a binary relation 
 on natural numbers, as defined above.
 -/
-
+/-anti reflexive: no onbject is related to itself (irreflexive- somethings)
+non refelxive- some obj arent related to itself
+irreflexive- somethings -/
 def cong_mod (n a b : ℤ) : Prop :=
   ∃ k, a - b = k * n
 
