@@ -138,6 +138,7 @@ end
 
 example (n : ℕ): equivalence (cong_mod_nat n) :=
 begin
+<<<<<<< HEAD
   unfold equivalence cong_mod_nat,
   unfold reflexive,
   unfold cong_mod_nat,
@@ -148,3 +149,6 @@ begin
   
 
 end
+=======
+end
+>>>>>>> 3a98dd22f277d116a198e60e11624be546803c1f

@@ -58,13 +58,14 @@ the transitivity property holds by the definition of
 argument version of ∧, taking anywhere from zero to
 an infinite number of arguments).
 
-Question: Is this symmetric? {(0,1), (1,0), (2,2)}
-How about this: {(0,1), (1,0), (2,3)}?
--- for all pairs (x,y) then (y,x) must be in the relation
+Question: Is this symmetric? {(0,1), (1,0), (2,2)} yes 
+How about this: {(0,1), (1,0), (2,3)}? no
+-- symetric: for all pairs (x,y) then (y,x) must be in the relation
 
 Now suppose that we have a relation, r, over a set
-of values, {0, 1, 2, 3, 4, 5}. Is this relation
+of values, {0, 1, 2, 3, 4, 5}. Is this relation -- this is irreflexive (nothing is related to itself )
 reflexive? {}
+(refleive: for all elements in a set has to be related itself)
 
 Question: If a relation is transitive and symmetric
 is it necessarily reflexive? If so, give an informal
