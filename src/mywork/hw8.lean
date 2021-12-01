@@ -10,12 +10,14 @@ this relation, so there are no cases to consider.
 When there are no cases to consider, the conclusion
 holds in all cases, of which there are 0, so it holds.
 
-Question: Is this symmetric? {(0,1), (1,0), (2,2)}
-How about this: {(0,1), (1,0), (2,3)}?
+Question: Is this symmetric? {(0,1), (1,0), (2,2)} YES
+How about this: {(0,1), (1,0), (2,3)}?  NO
 
 Now suppose that we have a relation, r, over a set
 of values, {0, 1, 2, 3, 4, 5}. Is this relation
-reflexive? {} What about this: {(0, 1), (2, 3)}
+reflexive? {} YES
+
+ What about this: {(0, 1), (2, 3)} NO
 
 Question: If a relation is transitive and symmetric
 is it necessarily reflexive? If so, give an informal

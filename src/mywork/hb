@@ -350,6 +350,7 @@ begin
   work with.
   -/
   cases r_bij with r_sur r_inj,
+  
   cases r_inj with r_tot r_one_to_one,
   cases r_sur with r_tot r_onto,
   unfold total_function at r_tot, 
@@ -387,7 +388,9 @@ begin
   injectivity of r, we're there!
   -/
   apply r_one_to_one irba1 irba2,
+  
 end 
+
 
 /-
 Just to set expectations: The reality is that
@@ -422,6 +425,21 @@ def bijectivep := function r ∧ bijective (dom_res r (dom_of_def r))
 -- EXERCISE #2: Prove that the inverse of a bijective function is bijective.
 example : bijective r → bijective (inverse r) :=
 begin
+  assume r_inj,
+  cases r_inj with r_tot r_one,  
+  unfold surjective at r_tot, 
+  unfold injective at r_one, 
+  cases r_tot with r_fun alldef,
+  unfold total_function at r_fun,
+  unfold function at r_fun,
+  unfold single_valued at r_fun,
+  unfold total_function at r_one,
+  unfold defined at r_fun,
+  unfold defined at r_one,
+  unfold bijective,
+  admit,
+
+  
 end
 
 
@@ -431,7 +449,8 @@ function is that function.
 -/
 example : bijective r → (r = inverse (inverse r)) :=
 begin
-
+  assume h,
+  split,
 end
 
 /-
@@ -439,6 +458,7 @@ EXERCISE  #4: Formally state and prove that every injective function
 has a *function* as an inverse.
 -/
 example : injective r → function (inverse r) :=
+begin
   assume r_inj,
   cases r_inj with r_tot r_one,  
   unfold total_function at r_tot, 
@@ -451,6 +471,7 @@ example : injective r → function (inverse r) :=
   assume b a1 a2 irba1 irba2,
   unfold inverse at irba1 irba2,
   apply r_one irba1 irba2,
+end
 
 /-
 EXERCISE #5. Is bijectivity transitive? In other words, if the
@@ -469,6 +490,8 @@ def bij_trans (s : β → γ → Prop)  (r : α → β → Prop) :
   bijective r → bijective s → bijective (composition s r) := 
   _
 
+begin 
+end
 /-
 In general, an operation (such as inverse, here) that, 
 when applied twice, is the identity, is said to be an
