@@ -238,3 +238,6 @@ end
 end functions
 end relations
 
+2^0+2^1+...+2^n=2^(n+1)-1
+
+example ∀ 
